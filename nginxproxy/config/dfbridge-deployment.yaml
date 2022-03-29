@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: df-bridge # Label for the Deployment
+  name: df-bridge # Name of Deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: df-bridge
+  template: # Pod template
+    metadata:
+      labels:
+        run: df-bridge # Labels Pods from this Deployment
+    spec: # Pod specification; each Pod created by this Deployment has this specification
+      containers:
+      - image: us.gcr.io/prj-example-1/df-bridge:1.12 # Application to run in Deployment's Pods
+        name: df-bridge

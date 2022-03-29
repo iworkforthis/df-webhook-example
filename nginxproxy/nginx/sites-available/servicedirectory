@@ -1,0 +1,21 @@
+server {
+       listen 81;
+       listen [::]:81;
+
+       listen 443 ssl;
+       listen [::]:443 ssl;
+      
+       ssl_certificate /etc/nginx/ssl/combine.pem;
+       ssl_certificate_key /etc/nginx/ssl/myPrivate.key;
+
+       server_name api.df-webhook.org;
+
+       root /var/www/servicedirectory;
+       index index.html;
+
+   
+       location / {
+               proxy_pass http://df-webhook:80/;
+       } 
+
+}
